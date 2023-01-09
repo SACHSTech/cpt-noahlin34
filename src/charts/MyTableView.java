@@ -1,103 +1,129 @@
+/*
+ * Copyright (c) 2008, 2016, Oracle and/or its affiliates.
+ * All rights reserved. Use is subject to license terms.
+ *
+ * This file is available and licensed under the following license:
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  - Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *  - Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the distribution.
+ *  - Neither the name of Oracle Corporation nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package charts;
 
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
 
+/**
+ * A simple table with a header row.
+ *
+ * @sampleName TableView
+ * @preview preview.png
+ * @docUrl http://www.oracle.com/pls/topic/lookup?ctx=javase80&id=JFXUI336 Using JavaFX UI Controls
+ * @see javafx.scene.control.TableColumn
+ * @see javafx.scene.control.TablePosition
+ * @see javafx.scene.control.TableRow
+ * @see javafx.scene.control.TableView
+ * @see javafx.scene.control.cell.PropertyValueFactory
+ * @embedded
+ *
+ * @related /Controls/TableCellFactory
+ * @related /Controls/TreeTableView
+ */
 public class MyTableView extends Application {
-    
-   public class Record {
-    private SimpleStringProperty f1, f2, f3;
 
-    public String getF1() {
-        return f1.get();
-    }
+    public Parent createContent() {
 
-    public String getF2() {
-        return f2.get();
-    }
+        String delimiter = ",";
+      
+        List<String[]> records = new ArrayList<>();
 
-    public String getF3() {
-        return f3.get();
-    }
+        try{
+          File file = new File("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/charts/data.csv");
+  
+          FileReader fileReader = new FileReader(file);
+  
+          BufferedReader reader = new BufferedReader(fileReader);
+  
+          String line = "";
+  
+          while((line = reader.readLine()) != null) {
+           String[]temparr = line.split(delimiter);
+            records.add(line.split(","));
+          }
 
-    Record(String f1, String f2, String f3) {
-        this.f1 = new SimpleStringProperty(f1);
-        this.f2 = new SimpleStringProperty(f2);
-        this.f3 = new SimpleStringProperty(f3);
-       }
-   }
-   
-   private final TableView<Record> tableView = new TableView<>();
-
-   private final ObservableList<Record> dataList = FXCollections.observableArrayList();
-
-   @Override
-   public void start(Stage primaryStage) {
-        primaryStage.setTitle("My CSV");
-
-
-        TableColumn columnF1 = new TableColumn("f1");
-        columnF1.setCellValueFactory(new PropertyValueFactory<>("f1"));
-
-        TableColumn columnF2 = new TableColumn<>("f2");
-        columnF2.setCellValueFactory(new PropertyValueFactory<>("f2"));
-
-        TableColumn columnF3 = new TableColumn<>("f3");
-        columnF2.setCellValueFactory(new PropertyValueFactory<>("f3"));
-
-
-        tableView.setItems(dataList);
-        tableView.getColumns().addAll(columnF1, columnF2, columnF3);
-
-        VBox vBox = new VBox();
-        vBox.setSpacing(10);
-        vBox.getChildren().add(tableView);
-
-        primaryStage.setScene(new Scene(root, 700, 250));
-        primaryStage.show();
-        readCSV();
-   }
-
-   public void readCSV() {
-
-        String csvFile = "/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/charts/data.csv";
-
-        String fieldDelimiter = ",";
-
-        BufferedReader bufferedReader;
-
-        try {
-            bufferedReader = new BufferedReader(new FileReader(csvFile));
-            String currentLine;
-            while((currentLine = bufferedReader.readLine()) != null) {
-                String[] fields = currentLine.split(fieldDelimiter, -1);
-
-                    Record record = new Record(fields[0], fields[1], fields[2]);
-
-                    
-            }
+        } catch (IOException e) {
+          e.printStackTrace();
         }
 
+        String[][] array = new String[records.size()][3];
+        records.toArray(array);
 
-   }
 
+        final ObservableList<DataRecord> data = FXCollections.observableArrayList();
 
-   
+        for(int x = 1; x < 470; x++) {
+            DataRecord e = new DataRecord(array[x][0], array[x][1], array[x][2]);
+            data.add(e);
+        }
 
+        TableColumn countryCol = new TableColumn();
+        countryCol.setText("Country");
+        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
+        TableColumn yearCol = new TableColumn();
+        yearCol.setText("Year");
+        yearCol.setCellValueFactory(new PropertyValueFactory("year"));
+        TableColumn coCol = new TableColumn();
+        coCol.setText("Coefficient");
+        coCol.setMinWidth(200);
+        coCol.setCellValueFactory(new PropertyValueFactory("value"));
+        final TableView tableView = new TableView();
+        tableView.setItems(data);
+        tableView.getColumns().addAll(countryCol, yearCol, coCol);
+        return tableView;
+    }
+
+    @Override public void start(Stage primaryStage) throws Exception {
+        primaryStage.setScene(new Scene(createContent()));
+        primaryStage.show();
+    }
+
+    /**
+     * Java main for when running without JavaFX launcher
+     * @param args command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
+
