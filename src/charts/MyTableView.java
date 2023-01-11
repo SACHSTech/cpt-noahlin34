@@ -98,14 +98,13 @@ public class MyTableView extends Application {
         }
 
         TableColumn countryCol = new TableColumn();
-        countryCol.setText("Country");
+        countryCol.setText("Year");
         countryCol.setCellValueFactory(new PropertyValueFactory("country"));
         TableColumn yearCol = new TableColumn();
-        yearCol.setText("Year");
+        yearCol.setText("Country");
         yearCol.setCellValueFactory(new PropertyValueFactory("year"));
         TableColumn coCol = new TableColumn();
         coCol.setText("Coefficient");
-        coCol.setMinWidth(200);
         coCol.setCellValueFactory(new PropertyValueFactory("value"));
         final TableView tableView = new TableView();
         tableView.setItems(data);

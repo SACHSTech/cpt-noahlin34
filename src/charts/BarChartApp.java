@@ -60,12 +60,11 @@ public class BarChartApp extends Application {
         records.toArray(array);
 
         xAxis = new CategoryAxis();
-        xAxis.setCategories(FXCollections.<String>observableArrayList(years));
+        xAxis.setCategories(FXCollections.<String>observableArrayList(temparr[1]));
         yAxis = new NumberAxis();
-        ObservableList<BarChart.Series> barChartData =
-            FXCollections.observableArrayList(
+        ObservableList<BarChart.Series> barChartData = FXCollections.observableArrayList(
               new BarChart.Series("Australia", FXCollections.observableArrayList(
-                new BarChart.Data(years[0],Double.parseDouble(array[1][2])),
+                new BarChart.Data(1997,Double.parseDouble(array[1][2])),
                 new BarChart.Data(years[1], 1665),
                 new BarChart.Data(years[2], 2559))),
               new BarChart.Series("Canada", FXCollections.observableArrayList(
