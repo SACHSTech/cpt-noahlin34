@@ -12,12 +12,14 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
+import cpt.ReadCSV;
 
 public class HomeTable {
     
-
+    
+   String[][] arrData = ReadCSV.readCSVFile("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/cpt/data.csv");
 
     
-
+    
 
 }
