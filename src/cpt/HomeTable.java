@@ -26,7 +26,6 @@ public class HomeTable extends Application{
 
     public Parent createContent() {
 
-        final TableView tableView = new TableView<>();
 
         
 
@@ -44,14 +43,15 @@ public class HomeTable extends Application{
 
         TableColumn columnYear = new TableColumn();
         columnYear.setText("Year");
-        columnYear.setCellFactory(new PropertyValueFactory<>("year"));
+        columnYear.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         TableColumn columnCoefficient = new TableColumn();
         columnCoefficient.setText("Coefficient");
-        columnCoefficient.setCellFactory(new PropertyValueFactory<>("value"));
+        columnCoefficient.setCellValueFactory(new PropertyValueFactory<>("value"));
 
 
 
+        final TableView tableView = new TableView();
 
         tableView.setItems(data);
         tableView.getColumns().addAll(columnCountry, columnYear, columnCoefficient);
@@ -63,7 +63,7 @@ public class HomeTable extends Application{
     }
 
 
-    @Override public void start(Stage primaryStage) throws e {
+    @Override public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
