@@ -14,12 +14,21 @@ import java.util.List;
 import java.util.ArrayList;
 import cpt.ReadCSV;
 
-public class HomeTable {
+public class HomeTable extends Application{
     
     
    String[][] arrData = ReadCSV.readCSVFile("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/cpt/data.csv");
 
-    
-    
+
+    public Parent createContent() {
+
+        final TableView tableView = new TableView<>();
+
+        return tableView;
+
+
+
+    }
+
 
 }
