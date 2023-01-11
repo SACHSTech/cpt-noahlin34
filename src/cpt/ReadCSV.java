@@ -11,18 +11,16 @@ import java.io.*;
 
 public class ReadCSV {
 
-    public Array[][] read (String strfilePath) {
+    public String[][] read (String strfilePath) {
+        List<String[]> listColumns = new ArrayList<>();
+        String strCurrentLine = "";
 
         try{
             File file = new File(strfilePath);
-
             FileReader fileReader = new FileReader(strfilePath);
-
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            String strCurrentLine = "";
 
-            List<String[]> listColumns = new ArrayList<>();
 
             while((strCurrentLine = bufferedReader.readLine()) != null) {
                 String[] arrTemp = strCurrentLine.split(",");
@@ -33,7 +31,10 @@ public class ReadCSV {
             e.printStackTrace();
         }
 
-
+        String[][] twodarrFinal = new String[listColumns.size()][3];
+        listColumns.toArray(twodarrFinal);
+        return twodarrFinal;
+        
     }
 
 
