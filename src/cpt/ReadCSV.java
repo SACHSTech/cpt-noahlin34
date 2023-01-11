@@ -10,9 +10,13 @@ import java.io.*;
 
 public class ReadCSV {
 
-    public Array[][] read (String file) {
+    public Array[][] read (String strfilePath) {
 
+        try{
+            File file = new File(strfilePath);
 
+            
+        }
 
 
     }
