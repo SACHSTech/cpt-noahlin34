@@ -11,6 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
+
+import charts.DataRecord;
+
 import java.util.ArrayList;
 import cpt.ReadCSV;
 
@@ -23,6 +26,16 @@ public class HomeTable extends Application{
     public Parent createContent() {
 
         final TableView tableView = new TableView<>();
+
+        
+
+        final ObservableList<DataRecord> data = FXCollections.observableArrayList();
+
+        for(int i = 1; i < 470; i++) {
+            DataRecord dataRecord = new DataRecord(arrData[i][0], arrData[i][1], arrData[i][2]);
+            data.add(dataRecord);
+        }
+
 
         return tableView;
 
