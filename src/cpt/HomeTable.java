@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -36,6 +37,24 @@ public class HomeTable extends Application{
             data.add(dataRecord);
         }
 
+
+        TableColumn columnCountry = new TableColumn();
+        columnCountry.setText("Country");
+        columnCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
+
+        TableColumn columnYear = new TableColumn();
+        columnYear.setText("Year");
+        columnYear.setCellFactory(new PropertyValueFactory<>("year"));
+
+        TableColumn columnCoefficient = new TableColumn();
+        columnCoefficient.setText("Coefficient");
+        columnCoefficient.setCellFactory(new PropertyValueFactory<>("value"));
+
+
+
+
+        tableView.setItems(data);
+        tableView.getColumns().addAll(columnCountry, columnYear, columnCoefficient);
 
         return tableView;
 
