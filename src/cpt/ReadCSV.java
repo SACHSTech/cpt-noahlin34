@@ -36,9 +36,6 @@ public class ReadCSV {
         listColumns.toArray(twodarrFinal);
         return twodarrFinal;
 
-        
-
-
 
 
     }
