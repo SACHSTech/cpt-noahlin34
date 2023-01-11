@@ -31,4 +31,9 @@ public class HomeTable extends Application{
     }
 
 
+    @Override public void start(Stage primaryStage) throws e {
+        primaryStage.setScene(new Scene(createContent()));
+        primaryStage.show();
+    }
+
 }
