@@ -100,6 +100,8 @@ public class HomeTable extends Application{
 
         grid.getChildren().addAll(tableView, choiceBox);        
 
+        grid.prefWidthProperty().set(500);;
+        grid.prefHeightProperty().set(500);;
 
         return grid;
 
