@@ -66,6 +66,15 @@ public class HomeTable extends Application{
         tableView.setItems(data);
         tableView.getColumns().addAll(columnCountry, columnYear, columnCoefficient);
 
+        tableView.prefHeightProperty().bind(grid.heightProperty());
+        tableView.prefWidthProperty().bind(grid.widthProperty());
+
+        columnCountry.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+        columnYear.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+        columnCoefficient.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+
+        
+
         GridPane.setConstraints(tableView, 0, 1);
 
 
@@ -104,7 +113,7 @@ public class HomeTable extends Application{
     @Override public void start(Stage primaryStage) throws Exception {
 
 
-
+        
 
 
         primaryStage.setScene(new Scene(createContent()));
