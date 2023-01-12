@@ -12,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.Group;
 
 import charts.DataRecord;
 
@@ -56,14 +58,31 @@ public class HomeTable extends Application{
         tableView.setItems(data);
         tableView.getColumns().addAll(columnCountry, columnYear, columnCoefficient);
 
-        return tableView;
 
 
+        
+
+
+        Group group = new Group();
+        group.getChildren().add(tableView);
+        
+
+
+        return group;
+
+        
+
+        
 
     }
 
 
     @Override public void start(Stage primaryStage) throws Exception {
+
+
+
+
+
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
