@@ -3,12 +3,15 @@ package cpt;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
@@ -38,6 +41,11 @@ public class HomeTable extends Application{
             data.add(dataRecord);
         }
 
+        GridPane grid = new GridPane();
+        
+
+        
+
 
         TableColumn columnCountry = new TableColumn();
         columnCountry.setText("Country");
@@ -58,8 +66,11 @@ public class HomeTable extends Application{
         tableView.setItems(data);
         tableView.getColumns().addAll(columnCountry, columnYear, columnCoefficient);
 
+        GridPane.setConstraints(tableView, 0, 1);
+
 
         ChoiceBox choiceBox = new ChoiceBox();
+
 
         String prevCountry = "";
         for(int i = 0; i < arrData.length; i++) {
@@ -74,16 +85,14 @@ public class HomeTable extends Application{
 
         }
 
+        GridPane.setConstraints(choiceBox, 0, 0);
 
 
 
-
-        Group group = new Group();
-        group.getChildren().addAll(tableView, choiceBox);
-        
+        grid.getChildren().addAll(tableView, choiceBox);        
 
 
-        return group;
+        return grid;
 
         
 
@@ -99,6 +108,7 @@ public class HomeTable extends Application{
 
 
         primaryStage.setScene(new Scene(createContent()));
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 
