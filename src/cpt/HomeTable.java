@@ -83,24 +83,27 @@ public class HomeTable extends Application{
 
 
          choiceBox.setOnAction(event -> {
+            tableView.getColumns().clear();
 
-            if(choiceBox.getValue().equals("All Countries")) {
-                tableView.getColumns().clear();
+           
+            final ObservableList<DataRecord> data = FXCollections.observableArrayList();
 
-                final ObservableList<DataRecord> data = FXCollections.observableArrayList();
 
+
+            switch(choiceBox.getValue()) {
+
+                case "All Countries":
+             
                 for(int i = 1; i < arrData.length; i++) {
                     DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[i][2]);
                     data.add(dataRecord);
-                }
+                    }
 
-                populateTable(data);
-            }
+                    populateTable(data);
+                    break;
 
-            if(choiceBox.getValue().equals("Australia")) {
-                tableView.getColumns().clear();
-
-                final ObservableList<DataRecord> data = FXCollections.observableArrayList();
+                case "Australia":
+                
 
                 for(int i = 1; i < arrData.length; i++) {
                     if(arrData[i][0].equals("Australia")) {
@@ -111,6 +114,34 @@ public class HomeTable extends Application{
                     }
                 }
                 populateTable(data);
+                break;
+
+                case "Canada":
+
+                for(int i = 1; i < arrData.length; i++) {
+                    if(arrData[i][0].equals("Canada")) {
+                        DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[i][2]);
+                        data.add(dataRecord);
+                    } else {
+                        continue;
+                    }
+                }
+                populateTable(data);
+                break;
+
+                case "Denmark":
+                for(int i = 1; i < arrData.length; i++) {
+                    if(arrData[i][0].equals("Denmark")) {
+                        DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[i][2]);
+                        data.add(dataRecord);
+                    } else {
+                        continue;
+                    }
+                }
+                populateTable(data);
+                break;
+
+
             }
         });
         
