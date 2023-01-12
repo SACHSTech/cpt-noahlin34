@@ -113,12 +113,12 @@ import java.util.ArrayList;
  */
 public class MyLineChart extends Application {
 
-    private LineChart chart;
-    private NumberAxis xAxis;
-    private NumberAxis yAxis;
+    public static LineChart chart;
+    public static NumberAxis xAxis;
+    public static NumberAxis yAxis;
 
     
-    public Parent createContent() {
+    public static Parent createContent() {
 
 
 

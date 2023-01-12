@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -20,12 +22,14 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import javafx.scene.control.ToolBar;
+import javafx.scene.robot.*;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.Group;
 
 import charts.DataRecord;
+import charts.MyLineChart;
 
 import java.util.ArrayList;
 import cpt.ReadCSV;
@@ -38,23 +42,31 @@ public class HomeTable extends Application{
 
    
 
-    public Parent createContent() {
-
-        return grid;
-    }  
+    
 
 
  
 
     @Override public void start(Stage primaryStage) throws Exception {
 
-    
 
-        primaryStage.setScene(new Scene(DataTable.makeTable()));
+        
+
+        Scene tableScene = new Scene(DataTable.makeTable());
+
+        Button myButton =  DataTable.lineButton;
+
+        myButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                //put the code here to switch scenes 
+              }
+        });
+
+        primaryStage.setScene(tableScene);
 
         primaryStage.setResizable(true);
         primaryStage.show();
-        
+
 
 
     }
@@ -64,9 +76,6 @@ public class HomeTable extends Application{
         launch(args);
     }
 
-
-
-    
 
     
 }

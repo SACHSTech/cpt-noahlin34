@@ -35,15 +35,18 @@ public final class DataTable {
     static TableView tableView = new TableView();
    static GridPane grid = new GridPane();
     static ChoiceBox<String> choiceBox = new ChoiceBox<>();
+    public static  Button lineButton = new Button("Line Chart");
 
 public static Parent makeTable() {
-    
     ToolBar toolbar = new ToolBar();
-        toolbar.getItems().add(new Button("Home"));
-        toolbar.getItems().add(new Button("Line Chart"));
-        toolbar.getItems().add(new Button("Bar Graph"));
 
-        GridPane.setConstraints(toolbar, 0, 0);
+
+
+    toolbar.getItems().add(new Button("Home"));
+    toolbar.getItems().add(lineButton);
+    toolbar.getItems().add(new Button("Bar Graph"));
+    GridPane.setConstraints(toolbar, 0, 0);
+ 
 
         GridPane.setConstraints(tableView, 0, 2);
 
