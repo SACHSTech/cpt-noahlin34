@@ -62,11 +62,11 @@ public class HomeTable extends Application{
         ChoiceBox choiceBox = new ChoiceBox();
 
         String prevCountry = "";
-        for(int i = 0; i < arrData[0].length; i++) {
-            String currentCountry = arrData[i][1];
+        for(int i = 0; i < arrData.length; i++) {
+            String currentCountry = arrData[i][0];
 
             if(currentCountry.equals(prevCountry)) {
-                break;
+                continue;
             } else {
                 choiceBox.getItems().add(currentCountry);
                 prevCountry = currentCountry;
@@ -74,12 +74,12 @@ public class HomeTable extends Application{
 
         }
 
-        
+
 
 
 
         Group group = new Group();
-        group.getChildren().add(tableView);
+        group.getChildren().addAll(tableView, choiceBox);
         
 
 
