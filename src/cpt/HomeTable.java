@@ -59,8 +59,23 @@ public class HomeTable extends Application{
         tableView.getColumns().addAll(columnCountry, columnYear, columnCoefficient);
 
 
+        ChoiceBox choiceBox = new ChoiceBox();
+
+        String prevCountry = "";
+        for(int i = 0; i < arrData[0].length; i++) {
+            String currentCountry = arrData[i][1];
+
+            if(currentCountry.equals(prevCountry)) {
+                break;
+            } else {
+                choiceBox.getItems().add(currentCountry);
+                prevCountry = currentCountry;
+            }
+
+        }
 
         
+
 
 
         Group group = new Group();
