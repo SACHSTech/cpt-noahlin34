@@ -14,10 +14,9 @@ public class ReadCSV {
     public static String[][] readCSVFile (String strfilePath) {
         List<String[]> listColumns = new ArrayList<>();
         String strCurrentLine = "";
+        File file = new File(strfilePath);
 
-        try{
-            File file = new File(strfilePath);
-            FileReader fileReader = new FileReader(file);
+        try(FileReader fileReader = new FileReader(file);){
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 
@@ -26,13 +25,12 @@ public class ReadCSV {
                 listColumns.add(arrTemp);
             }
 
-            bufferedReader.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String[][] twodarrFinal = new String[listColumns.size()][3];
+        String[][] twodarrFinal = new String[listColumns.size()][listColumns.get(0).length];
         listColumns.toArray(twodarrFinal);
         return twodarrFinal;
 
