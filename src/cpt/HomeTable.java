@@ -46,8 +46,6 @@ public class HomeTable extends Application{
  
 
     @Override public void start(Stage primaryStage) throws Exception {
-
-
     
         Scene tableScene = new Scene(DataTable.makeTable());
 
@@ -62,6 +60,9 @@ public class HomeTable extends Application{
 
             }
         });
+
+
+        
 
         primaryStage.setScene(tableScene);
 
