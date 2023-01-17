@@ -37,16 +37,13 @@ public final class DataTable {
     static ChoiceBox<String> choiceBox = new ChoiceBox<>();
     public static  Button lineButton = new Button("Line Chart");
 
-public static Parent makeTable() {
-    ToolBar toolbar = new ToolBar();
+    public static Parent makeTable() {
+        ToolBar toolbar = new ToolBar();
 
-
-
-    toolbar.getItems().add(new Button("Home"));
-    toolbar.getItems().add(lineButton);
-    toolbar.getItems().add(new Button("Bar Graph"));
-    GridPane.setConstraints(toolbar, 0, 0);
- 
+        toolbar.getItems().add(new Button("Home"));
+        toolbar.getItems().add(lineButton);
+        toolbar.getItems().add(new Button("Bar Graph"));
+        GridPane.setConstraints(toolbar, 0, 0);
 
         GridPane.setConstraints(tableView, 0, 2);
 
@@ -57,30 +54,23 @@ public static Parent makeTable() {
 
 
 
-        String prevCountry = "";
-        for(int i = 1; i < arrData.length; i++) {
-            String currentCountry = arrData[i][0];
+            String prevCountry = "";
+            for(int i = 1; i < arrData.length; i++) {
+                String currentCountry = arrData[i][0];
 
-            if(currentCountry.equals(prevCountry)) {
-                continue;
-            } else {
-                choiceBox.getItems().add(currentCountry);
-                prevCountry = currentCountry;
+                if(currentCountry.equals(prevCountry)) {
+                    continue;
+                } else {
+                    choiceBox.getItems().add(currentCountry);
+                    prevCountry = currentCountry;
+                }
+
             }
-
-        }
-
-
-
-
-
-
 
         grid.getChildren().addAll(tableView, choiceBox, toolbar);        
 
         grid.prefWidthProperty().set(500);;
         grid.prefHeightProperty().set(500);;
-
 
         choiceBox.setOnAction(event -> {
         tableView.getColumns().clear();
@@ -137,8 +127,6 @@ public static Parent makeTable() {
                 }
                 populateTable(data);
                 break;
-
-
 
 
             }

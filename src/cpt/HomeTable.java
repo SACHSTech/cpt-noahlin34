@@ -21,6 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
+
+import javax.sound.sampled.DataLine;
+
 import javafx.scene.control.ToolBar;
 import javafx.scene.robot.*;
 
@@ -40,26 +43,24 @@ public class HomeTable extends Application{
     GridPane grid = new GridPane();
 
 
-   
-
-    
-
-
  
 
     @Override public void start(Stage primaryStage) throws Exception {
 
 
-        
-
+    
         Scene tableScene = new Scene(DataTable.makeTable());
 
         Button myButton =  DataTable.lineButton;
 
         myButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                //put the code here to switch scenes 
-              }
+                Scene lineChart = new Scene(DataLineChart.makeLineChart());
+
+                primaryStage.setScene(lineChart);
+                primaryStage.setResizable(true);
+
+            }
         });
 
         primaryStage.setScene(tableScene);
