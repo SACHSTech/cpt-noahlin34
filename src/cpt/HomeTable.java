@@ -23,6 +23,7 @@ import java.io.*;
 import java.util.List;
 
 import javax.sound.sampled.DataLine;
+import javax.swing.Action;
 
 import javafx.scene.control.ToolBar;
 import javafx.scene.robot.*;
@@ -48,12 +49,12 @@ public class HomeTable extends Application{
     @Override public void start(Stage primaryStage) throws Exception {
     
         Scene tableScene = new Scene(DataTable.makeTable());
+        Scene lineChart = new Scene(DataLineChart.makeLineChart());
 
         Button myButton =  DataTable.lineButton;
 
         myButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                Scene lineChart = new Scene(DataLineChart.makeLineChart());
 
                 primaryStage.setScene(lineChart);
                 primaryStage.setResizable(true);
@@ -61,8 +62,15 @@ public class HomeTable extends Application{
             }
         });
 
+        Button homeButton = DataLineChart.homeButton;
 
-        
+        homeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                primaryStage.setScene(tableScene);
+                primaryStage.show();
+            }
+        });
+
 
         primaryStage.setScene(tableScene);
 

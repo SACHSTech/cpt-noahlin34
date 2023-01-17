@@ -25,14 +25,13 @@ public final class DataLineChart {
     public static NumberAxis xAxis;
     public static NumberAxis yAxis;
     public static GridPane grid = new GridPane();
-    public static  Button lineButton = new Button("Line Chart");
+    public static  Button homeButton = new Button("Home");
 
     public static Parent makeLineChart() {
 
         ToolBar toolbar = new ToolBar();
-
-        toolbar.getItems().add(new Button("Home"));
-        toolbar.getItems().add(lineButton);
+        toolbar.getItems().add(homeButton);
+        toolbar.getItems().add(new Button("Line Chart"));
         toolbar.getItems().add(new Button("Bar Graph"));
         GridPane.setConstraints(toolbar, 0, 0);
 
