@@ -16,12 +16,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.NumberAxis.*;
 import javafx.stage.Stage;
 import java.util.List;
 
 import javax.swing.Action;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.ArrayList;
 import javafx.scene.control.Button;
@@ -55,36 +57,55 @@ public final class DataLineChart {
         HBox.setSpacing(5);
         
         CheckBox australia = new CheckBox("Australia");
+        CheckBox canada = new CheckBox("Canada");
 
 
-        HBox.getChildren().addAll(australia);
+        HBox.getChildren().addAll(australia, canada);
 
-        xAxis = new NumberAxis("Year", 1980, 2020, 1);
+        xAxis = new NumberAxis("Year", 1970, 2016, 1);
         yAxis = new NumberAxis("Gini Coefficient", 20, 40, 1);
+
+
         lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setAnimated(false);
-        String prevCountry = "Australia";
-        XYChart.Series<Double, Double> series = new XYChart.Series<>();
+        XYChart.Series<Double, Double> australiaSeries = new XYChart.Series<>();
+        XYChart.Series<Double, Double> canadaSeries = new XYChart.Series<>();
 
         for(int x = 1; x < arrData.length; x++ ) {
-            String currentCountry = arrData[x][0];
-            if(currentCountry.equals(prevCountry)) {
-                series.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
-                series.setName("AUSTRALIA");
+            if(arrData[x][0].equals("Australia")) {
 
-                } else {    
-
+                australiaSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                australiaSeries.setName(arrData[x][0]);
+            } 
+         
+            if(arrData[x][0].equals("Canada")) {
+                canadaSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                canadaSeries.setName("Canada");
             }
-            
+
+                
         }
+
+        
 
         australia.setOnAction(new EventHandler<ActionEvent>() {
             @Override 
             public void handle(ActionEvent e) {
                 if(australia.isSelected()) {
-                    lineChart.getData().add(series);
+                    lineChart.getData().add(australiaSeries);
                 } else {
-                    lineChart.getData().remove(series);
+                    lineChart.getData().remove(australiaSeries);
+                }
+            }
+        });
+
+        canada.setOnAction(new EventHandler<ActionEvent>() {
+            @Override 
+            public void handle(ActionEvent e) {
+                if(canada.isSelected()) {
+                    lineChart.getData().add(canadaSeries);
+                } else {
+                    lineChart.getData().remove(canadaSeries);
                 }
             }
         });
