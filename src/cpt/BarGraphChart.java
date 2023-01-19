@@ -25,6 +25,8 @@ public class BarGraphChart {
     private static GridPane grid;
     public static  Button homeButton = new Button("Home");
     public static  Button lineButton = new Button("Line Chart");
+    static XYChart.Series<String, String> canadaSeries = new XYChart.Series<>();
+    static  XYChart.Series<String, String> australiaSeires = new XYChart.Series<>();
 
     public static Parent makeBarChart() {
         ToolBar toolbar = new ToolBar();
@@ -48,23 +50,32 @@ public class BarGraphChart {
         yAxis.setLabel("Value");
 
 
-        XYChart.Series<String, String> series1 = new XYChart.Series<>();
+   
             
-        
+        int selectedYear = 1997;
             
+
+       
+
+        populateData();
         
-        series1.setName("Canada");
-        series1.getData().add(new XYChart.Data("Canada", 14));
        
         chart = new BarChart<>(xAxis, yAxis);
         chart.setTitle("Coefficient in x year");
 
-        chart.getData().add(series1);
+        chart.getData().addAll(canadaSeries, australiaSeires);
 
         grid.setConstraints(chart, 0, 1);
         grid.getChildren().addAll(chart, toolbar);
         return grid;
         
+    }
+
+
+    public static void populateData() {
+        
+        canadaSeries.getData().add(new XYChart.Data("Canada", 20));
+        australiaSeires.getData().add(new XYChart.Data("Australia", 11));
     }
 
     

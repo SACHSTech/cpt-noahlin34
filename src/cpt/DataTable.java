@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import cpt.ReadCSV;
 
 public final class DataTable {
-  static  String[][] arrData = ReadCSV.readCSVFile("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/cpt/data.csv");
+  static  String[][] arrData = ReadCSV.readCSVFile("src/cpt/data1.csv");
     static TableView tableView = new TableView();
    static GridPane grid = new GridPane();
     static ChoiceBox<String> choiceBox = new ChoiceBox<>();
@@ -118,6 +118,54 @@ public final class DataTable {
                 for(int i = 1; i < arrData.length; i++) {
                     if(arrData[i][0].equals("Denmark")) {
                         DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[i][2]);
+                        data.add(dataRecord);
+                    } else {
+                        continue;
+                    }
+                }
+                populateTable(data);
+                break;
+
+                case "Finland":
+                for(int i = 1; i < arrData.length; i++) {
+                    if(arrData[i][0].equals("Finland")) {
+                        DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[1][2]);
+                        data.add(dataRecord);
+                    } else {
+                        continue;
+                    }
+                }
+                populateTable(data);
+                break;
+
+                case "France":
+                for(int i = 1; i < arrData.length; i++) {
+                    if(arrData[i][0].equals("France")) {
+                        DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[1][2]);
+                        data.add(dataRecord);
+                    } else {
+                        continue;
+                    }
+                }
+                populateTable(data);
+                break;
+
+                case "Germany":
+                for(int i = 1; i < arrData.length; i++) {
+                    if(arrData[i][0].equals("Germany")) {
+                        DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[1][2]);
+                        data.add(dataRecord);
+                    } else {
+                        continue;
+                    }
+                }
+                populateTable(data);
+                break;
+
+                case "United States":
+                for(int i = 1; i < arrData.length; i++) {
+                    if(arrData[i][0].equals("United States")) {
+                        DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[1][2]);
                         data.add(dataRecord);
                     } else {
                         continue;

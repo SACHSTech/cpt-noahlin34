@@ -32,7 +32,7 @@ import javafx.scene.control.ToolBar;
 
 public final class DataLineChart {
 
-    public static  String[][] arrData = ReadCSV.readCSVFile("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/cpt/data.csv");
+    public static  String[][] arrData = ReadCSV.readCSVFile("src/cpt/data1.csv");
     public static LineChart lineChart;
     public static NumberAxis xAxis;
     public static NumberAxis yAxis;
