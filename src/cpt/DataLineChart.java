@@ -1,6 +1,7 @@
 package cpt;
 
 import javafx.application.Application;
+import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,11 +56,15 @@ public final class DataLineChart {
         CheckBox australia = new CheckBox("Australia");
         CheckBox canada = new CheckBox("Canada");
         CheckBox denmark = new CheckBox("Denmark");
+        CheckBox finland = new CheckBox("Finland");
+        CheckBox france = new CheckBox("France");
+        CheckBox germany = new CheckBox("Germany");
+        CheckBox unitedstates = new CheckBox("United States");
 
 
-        HBox.getChildren().addAll(australia, canada, denmark);
+        HBox.getChildren().addAll(australia, canada, denmark, finland, france, germany, unitedstates);
 
-        xAxis = new NumberAxis("Year", 1970, 2016, 1);
+        xAxis = new NumberAxis("Year", 1950, 2016, 1);
         yAxis = new NumberAxis("Gini Coefficient", 20, 40, 1);
 
 
@@ -68,6 +73,11 @@ public final class DataLineChart {
         XYChart.Series<Double, Double> australiaSeries = new XYChart.Series<>();
         XYChart.Series<Double, Double> canadaSeries = new XYChart.Series<>();
         XYChart.Series<Double, Double> denmarkSeries = new XYChart.Series<>();
+        XYChart.Series<Double, Double> finlandSeries = new XYChart.Series<>();
+        XYChart.Series<Double, Double> franceSeries = new XYChart.Series<>();
+        XYChart.Series<Double, Double> germanySeries = new XYChart.Series<>();
+        XYChart.Series<Double, Double> unitedstatesSeries = new XYChart.Series<>();
+
 
         for(int x = 1; x < arrData.length; x++ ) {
             if(arrData[x][0].equals("Australia")) {
@@ -85,7 +95,26 @@ public final class DataLineChart {
                 denmarkSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
                 denmarkSeries.setName("Denmark");
             }
+
+            if(arrData[x][0].equals("Finland")) {
+                finlandSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                finlandSeries.setName("Finland");
+            }
                 
+            if(arrData[x][0].equals("France")) {
+                franceSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                franceSeries.setName("France");
+            }
+
+            if(arrData[x][0].equals("Germany")) {
+                germanySeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                germanySeries.setName("Germany");
+            }
+
+            if(arrData[x][0].equals("United States")) {
+                unitedstatesSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                unitedstatesSeries.setName("United States");
+            }
         }
 
         
@@ -125,11 +154,61 @@ public final class DataLineChart {
             }
         });
 
+        finland.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if(finland.isSelected()) {
+                    lineChart.getData().add(finlandSeries);
+
+                } else {
+                    lineChart.getData().remove(finlandSeries);
+                }
+            }
+        });
+
+        france.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if(france.isSelected()) {
+                    lineChart.getData().add(franceSeries);
+
+                } else {
+                    lineChart.getData().remove(franceSeries);
+                }
+            }
+        });
+
+        germany.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if(germany.isSelected()) {
+                    lineChart.getData().add(germanySeries);
+
+                } else {
+                    lineChart.getData().remove(germanySeries);
+                }
+            }
+        });
+
+        unitedstates.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if(unitedstates.isSelected()) {
+                    lineChart.getData().add(unitedstatesSeries);
+
+                } else {
+                    lineChart.getData().remove(unitedstatesSeries);
+                }
+            }
+        });
+
 
 
         grid.prefWidthProperty().set(1000);;
-        grid.prefHeightProperty().set(1000);;
+        grid.prefHeightProperty().set(800);;
       
+       
+
         lineChart.prefHeightProperty().bind(grid.heightProperty());
         lineChart.prefWidthProperty().bind(grid.widthProperty());
 
