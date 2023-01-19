@@ -49,6 +49,8 @@ public final class DataLineChart {
         toolbar.getItems().add(new Button("Bar Graph"));
         GridPane.setConstraints(toolbar, 0, 0);
 
+        
+
         HBox HBox = new HBox();
         GridPane.setConstraints(HBox, 0, 1);
         HBox.setSpacing(5);

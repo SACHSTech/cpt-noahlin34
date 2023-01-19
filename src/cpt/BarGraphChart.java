@@ -2,6 +2,7 @@ package cpt;
 
 import java.util.Locale.Category;
 
+import javafx.event.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,8 +26,10 @@ public class BarGraphChart {
     private static GridPane grid;
     public static  Button homeButton = new Button("Home");
     public static  Button lineButton = new Button("Line Chart");
-    static XYChart.Series<String, String> canadaSeries = new XYChart.Series<>();
+    public static ChoiceBox choiceBox;
     static  XYChart.Series<String, String> australiaSeires = new XYChart.Series<>();
+    static   XYChart.Series<String, String> series = new XYChart.Series<>();
+
 
     public static Parent makeBarChart() {
         ToolBar toolbar = new ToolBar();
@@ -35,8 +38,15 @@ public class BarGraphChart {
         toolbar.getItems().add(new Button("Bar Graph"));
         GridPane.setConstraints(toolbar, 0, 0);
 
+        choiceBox = new ChoiceBox<>();
+        choiceBox.setValue("1956");
+        GridPane.setConstraints(choiceBox, 0, 1);
 
- ;
+        for(int x = 1956; x <= 2014; x++) {
+            choiceBox.getItems().add(x);
+        }
+
+ 
         grid = new GridPane();
 
         xAxis = new CategoryAxis();
@@ -52,30 +62,47 @@ public class BarGraphChart {
 
    
             
-        int selectedYear = 1997;
+        choiceBox.setOnAction((event) -> {
+
+           String yearString = choiceBox.getValue().toString();
+            populateData(Integer.parseInt(yearString));
+            chart.getData().add(series);
             
+        });
 
-       
 
-        populateData();
         
        
         chart = new BarChart<>(xAxis, yAxis);
         chart.setTitle("Coefficient in x year");
+        chart.setAnimated(false);
 
-        chart.getData().addAll(canadaSeries, australiaSeires);
-
-        grid.setConstraints(chart, 0, 1);
-        grid.getChildren().addAll(chart, toolbar);
+        grid.setConstraints(chart, 0, 2);
+        grid.getChildren().addAll(chart, toolbar, choiceBox);
         return grid;
         
     }
 
 
-    public static void populateData() {
-        
-        canadaSeries.getData().add(new XYChart.Data("Canada", 20));
-        australiaSeires.getData().add(new XYChart.Data("Australia", 11));
+    public static void populateData(int year) {
+        chart.getData().remove(series);
+        series.getData().clear();
+        series.setName(Integer.toString(year));
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Canada")) {
+
+                series.getData().add(new XYChart.Data("Canada", Double.parseDouble(arrData[x][2])));
+                
+            }
+        }
+
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Denmark")) {
+                XYChart.Series<String, String> denmarkSeries = new XYChart.Series<>();
+
+                series.getData().add(new XYChart.Data("Denmark", Double.parseDouble(arrData[x][2])));
+            }
+        }
     }
 
     
