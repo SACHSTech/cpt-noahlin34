@@ -34,23 +34,18 @@ public class BarGraphChart {
         GridPane.setConstraints(toolbar, 0, 0);
 
 
+ ;
         grid = new GridPane();
 
         xAxis = new CategoryAxis();
+        xAxis.setLabel("country");
         String prevValue = "";
-        for(int x = 1; x < arrData.length; x++) {
-            if(prevValue.equals(arrData[x][0])) {
-                prevValue = arrData[x][0];
-            } else {
-                xAxis.getCategories().add(arrData[x][0]);
-                prevValue = arrData[x][0];
-
-            }
-        }
 
 
 
-        yAxis = new NumberAxis();
+
+        yAxis = new NumberAxis(0, 30, 1);
+        yAxis.setLabel("Value");
 
 
         XYChart.Series<String, String> series1 = new XYChart.Series<>();
@@ -59,13 +54,15 @@ public class BarGraphChart {
             
         
         series1.setName("Canada");
-        series1.getData().add(new XYChart.Data<>("1997", "2"));
+        series1.getData().add(new XYChart.Data("Canada", 14));
        
+        chart = new BarChart<>(xAxis, yAxis);
+        chart.setTitle("Coefficient in x year");
 
         chart.getData().add(series1);
 
         grid.setConstraints(chart, 0, 1);
-        grid.getChildren().addAll(chart);
+        grid.getChildren().addAll(chart, toolbar);
         return grid;
         
     }

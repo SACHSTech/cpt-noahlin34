@@ -71,7 +71,15 @@ public class HomeTable extends Application{
             }
         });
 
-        Button bar
+        Button bargraphButton = DataTable.barButton;
+
+        bargraphButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                primaryStage.setScene(barScene);
+                primaryStage.show();
+            }
+        });
 
         primaryStage.setScene(tableScene);
 
