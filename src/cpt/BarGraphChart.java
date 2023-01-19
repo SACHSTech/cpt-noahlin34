@@ -77,6 +77,11 @@ public class BarGraphChart {
         chart.setTitle("Coefficient in x year");
         chart.setAnimated(false);
 
+        chart.prefHeightProperty().bind(grid.heightProperty());
+        chart.prefWidthProperty().bind(grid.widthProperty());
+                
+        grid.prefWidthProperty().set(1000);;
+        grid.prefHeightProperty().set(800);;
         grid.setConstraints(chart, 0, 2);
         grid.getChildren().addAll(chart, toolbar, choiceBox);
         return grid;
@@ -88,6 +93,14 @@ public class BarGraphChart {
         chart.getData().remove(series);
         series.getData().clear();
         series.setName(Integer.toString(year));
+
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Australia")) {
+
+                series.getData().add(new XYChart.Data("Australia", Double.parseDouble(arrData[x][2])));
+            }
+        }
+        
         for(int x = 1; x < arrData.length; x++) {
             if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Canada")) {
 
@@ -98,9 +111,33 @@ public class BarGraphChart {
 
         for(int x = 1; x < arrData.length; x++) {
             if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Denmark")) {
-                XYChart.Series<String, String> denmarkSeries = new XYChart.Series<>();
 
                 series.getData().add(new XYChart.Data("Denmark", Double.parseDouble(arrData[x][2])));
+            }
+        }
+
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Finland")) {
+
+                series.getData().add(new XYChart.Data("Finland", Double.parseDouble(arrData[x][2])));
+            }
+        }
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("France")) {
+
+                series.getData().add(new XYChart.Data("France", Double.parseDouble(arrData[x][2])));
+            }
+        }
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Germany")) {
+
+                series.getData().add(new XYChart.Data("Germany", Double.parseDouble(arrData[x][2])));
+            }
+        }
+        for(int x = 1; x < arrData.length; x++) {
+            if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("United States")) {
+
+                series.getData().add(new XYChart.Data("United States", Double.parseDouble(arrData[x][2])));
             }
         }
     }
