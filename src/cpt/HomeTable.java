@@ -50,6 +50,7 @@ public class HomeTable extends Application{
     
         Scene tableScene = new Scene(DataTable.makeTable());
         Scene lineChart = new Scene(DataLineChart.makeLineChart());
+        Scene barScene = new Scene(BarGraphChart.makeBarChart());
 
         Button myButton =  DataTable.lineButton;
 
@@ -58,7 +59,6 @@ public class HomeTable extends Application{
 
                 primaryStage.setScene(lineChart);
                 primaryStage.setResizable(true);
-
             }
         });
 
@@ -71,13 +71,14 @@ public class HomeTable extends Application{
             }
         });
 
+        Button bar
 
         primaryStage.setScene(tableScene);
 
         primaryStage.setResizable(true);
         primaryStage.show();
 
-
+        
 
     }
 

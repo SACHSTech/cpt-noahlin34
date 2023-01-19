@@ -43,6 +43,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
 import java.util.List;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.ArrayList;
 
@@ -141,7 +142,7 @@ public class MyLineChart extends Application {
           }
         } catch (IOException e) {
           e.printStackTrace();
-        }
+        }x
 
         String[][] array = new String[records.size()][3];
         records.toArray(array);
@@ -150,9 +151,9 @@ public class MyLineChart extends Application {
 
 
 
-        xAxis = new NumberAxis("Year", 1980, 2020, 1);
+        xAxis = new NumberAxis("Year", 1970, 2016, 1);
         yAxis = new NumberAxis("Gini Coefficient", 20, 40, 1);
-
+        final DecimalFormat format = new DecimalFormat("####");
 
 
 
@@ -160,7 +161,7 @@ public class MyLineChart extends Application {
 
         XYChart.Series<Double, Double> seriesAustralia = new XYChart.Series<>();
         seriesAustralia.setName("Australia");
-
+        
         chart = new LineChart<>(xAxis, yAxis);
 
         for(int x = 0; x < 6; x++ ) {

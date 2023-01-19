@@ -36,13 +36,14 @@ public final class DataTable {
    static GridPane grid = new GridPane();
     static ChoiceBox<String> choiceBox = new ChoiceBox<>();
     public static  Button lineButton = new Button("Line Chart");
+    public static Button barButton = new Button("Bar Graph");
 
     public static Parent makeTable() {
         ToolBar toolbar = new ToolBar();
 
         toolbar.getItems().add(new Button("Home"));
         toolbar.getItems().add(lineButton);
-        toolbar.getItems().add(new Button("Bar Graph"));
+        toolbar.getItems().add(barButton);
         GridPane.setConstraints(toolbar, 0, 0);
 
         GridPane.setConstraints(tableView, 0, 2);
@@ -51,8 +52,6 @@ public final class DataTable {
         choiceBox.getItems().add("All Countries");
         choiceBox.setValue("All Countries");
         GridPane.setConstraints(choiceBox, 0, 1);
-
-
 
             String prevCountry = "";
             for(int i = 1; i < arrData.length; i++) {
@@ -68,9 +67,8 @@ public final class DataTable {
             }
 
         grid.getChildren().addAll(tableView, choiceBox, toolbar);        
-
-        grid.prefWidthProperty().set(500);;
-        grid.prefHeightProperty().set(500);;
+        grid.prefWidthProperty().set(1000);;
+        grid.prefHeightProperty().set(1000);;
 
         choiceBox.setOnAction(event -> {
         tableView.getColumns().clear();

@@ -40,11 +40,7 @@ public final class DataLineChart {
     public static  Button homeButton = new Button("Home");
 
     public static Parent makeLineChart() {
-
-
-    
-
-
+        
 
         ToolBar toolbar = new ToolBar();
         toolbar.getItems().add(homeButton);
@@ -58,9 +54,10 @@ public final class DataLineChart {
         
         CheckBox australia = new CheckBox("Australia");
         CheckBox canada = new CheckBox("Canada");
+        CheckBox denmark = new CheckBox("Denmark");
 
 
-        HBox.getChildren().addAll(australia, canada);
+        HBox.getChildren().addAll(australia, canada, denmark);
 
         xAxis = new NumberAxis("Year", 1970, 2016, 1);
         yAxis = new NumberAxis("Gini Coefficient", 20, 40, 1);
@@ -70,6 +67,7 @@ public final class DataLineChart {
         lineChart.setAnimated(false);
         XYChart.Series<Double, Double> australiaSeries = new XYChart.Series<>();
         XYChart.Series<Double, Double> canadaSeries = new XYChart.Series<>();
+        XYChart.Series<Double, Double> denmarkSeries = new XYChart.Series<>();
 
         for(int x = 1; x < arrData.length; x++ ) {
             if(arrData[x][0].equals("Australia")) {
@@ -83,6 +81,10 @@ public final class DataLineChart {
                 canadaSeries.setName("Canada");
             }
 
+            if(arrData[x][0].equals("Denmark")) {
+                denmarkSeries.getData().add(new XYChart.Data<>(Double.parseDouble(arrData[x][1]), Double.parseDouble(arrData[x][2])));
+                denmarkSeries.setName("Denmark");
+            }
                 
         }
 
@@ -109,7 +111,27 @@ public final class DataLineChart {
                 }
             }
         });
+
+
+        denmark.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if(denmark.isSelected()) {
+                    lineChart.getData().add(denmarkSeries);
+
+                } else {
+                    lineChart.getData().remove(denmarkSeries);
+                }
+            }
+        });
+
+
+
+        grid.prefWidthProperty().set(1000);;
+        grid.prefHeightProperty().set(1000);;
       
+        lineChart.prefHeightProperty().bind(grid.heightProperty());
+        lineChart.prefWidthProperty().bind(grid.widthProperty());
 
         GridPane.setConstraints(lineChart, 0, 2);
 
