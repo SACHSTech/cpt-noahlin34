@@ -56,7 +56,7 @@ public class BarGraphChart {
 
 
 
-        yAxis = new NumberAxis(0, 30, 1);
+        yAxis = new NumberAxis(0, 40, 1);
         yAxis.setLabel("Value");
 
 
@@ -100,7 +100,7 @@ public class BarGraphChart {
                 series.getData().add(new XYChart.Data("Australia", Double.parseDouble(arrData[x][2])));
             }
         }
-        
+
         for(int x = 1; x < arrData.length; x++) {
             if(arrData[x][1].equals(Integer.toString(year)) && arrData[x][0].equals("Canada")) {
 
