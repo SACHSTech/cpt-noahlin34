@@ -263,7 +263,7 @@ public final class DataLineChart {
         //binds linechart size to the size of the grid 
         lineChart.prefHeightProperty().bind(grid.heightProperty());
         lineChart.prefWidthProperty().bind(grid.widthProperty());
-
+        lineChart.setTitle("Gini Coefficient by Country 1950-2016");
 
 
         GridPane.setConstraints(lineChart, 0, 2);
