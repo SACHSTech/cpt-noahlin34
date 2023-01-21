@@ -48,7 +48,7 @@ public class ReadCSV {
             e.printStackTrace();
         }
 
-        //2fd array that takes input from the list
+        //2d array that takes input from the list
         String[][] twodarrFinal = new String[listColumns.size()][listColumns.get(0).length];
         listColumns.toArray(twodarrFinal);
 
