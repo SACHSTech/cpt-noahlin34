@@ -113,7 +113,7 @@ public final class DataTable {
                 //iterates through every country, adding data for all the countries
                 for(int i = 1; i < arrData.length; i++) {
 
-                    //creates datarecord with data 
+                    //creates instance of datarecord class, passing data as parameters 
                     DataRecord dataRecord = new DataRecord(arrData[i][1], arrData[i][0], arrData[i][2]);
                     data.add(dataRecord);
                 }
