@@ -81,6 +81,32 @@ public class HomeTable extends Application{
             }
         });
 
+        Button bargrapghButton2 = DataLineChart.barButton;
+
+        bargrapghButton2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle (ActionEvent e) {
+                primaryStage.setScene(barScene);
+                primaryStage.show();
+            }
+        });
+
+
+        Button homeButton2 = BarGraphChart.homeButton;
+        homeButton2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                primaryStage.setScene(tableScene);
+                primaryStage.show();
+            }
+        });
+
+        Button lineButton2 = BarGraphChart.lineButton;
+        lineButton2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle (ActionEvent e) {
+                primaryStage.setScene(lineChart);
+                primaryStage.show();
+            }
+        });
+
         primaryStage.setScene(tableScene);
 
         primaryStage.setResizable(true);

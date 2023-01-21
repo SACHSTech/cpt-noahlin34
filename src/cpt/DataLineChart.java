@@ -39,6 +39,7 @@ public final class DataLineChart {
     public static NumberAxis yAxis;
     public static GridPane grid = new GridPane();
     public static  Button homeButton = new Button("Home");
+    public static Button barButton = new Button("Bar Graph ");
 
     public static Parent makeLineChart() {
         
@@ -46,7 +47,7 @@ public final class DataLineChart {
         ToolBar toolbar = new ToolBar();
         toolbar.getItems().add(homeButton);
         toolbar.getItems().add(new Button("Line Chart"));
-        toolbar.getItems().add(new Button("Bar Graph"));
+        toolbar.getItems().add(barButton);
         GridPane.setConstraints(toolbar, 0, 0);
 
         

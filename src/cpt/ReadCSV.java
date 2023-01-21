@@ -42,7 +42,7 @@ public class ReadCSV {
                 listColumns.add(arrTemp);
             }
 
-
+            
         } catch (IOException e) {
             //handle exception
             e.printStackTrace();
