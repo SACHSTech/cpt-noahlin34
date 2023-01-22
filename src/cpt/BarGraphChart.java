@@ -89,7 +89,7 @@ public class BarGraphChart {
         
        //declaring barchart 
         chart = new BarChart<>(xAxis, yAxis);
-        chart.setTitle("Gini Coefficient by Country in 1956");
+        chart.setTitle("Gini Coefficient by Country in ");
         chart.setAnimated(false);
 
         //binds chart height to the gridpane 
