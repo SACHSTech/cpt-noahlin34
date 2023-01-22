@@ -42,6 +42,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
+
+import cpt.DataRecord;
+
 import java.util.ArrayList;
 
 /**
