@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 public class BarGraphChart {
 
     //private variable declaration, only used in this class
-    private static String[][] arrData = ReadCSV.readCSVFile("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/cpt/data.csv");
+    private static String[][] arrData = ReadCSV.readCSVFile("src/cpt/data1.csv");
     private static NumberAxis yAxis;
     private static CategoryAxis xAxis;
     private static BarChart chart;
