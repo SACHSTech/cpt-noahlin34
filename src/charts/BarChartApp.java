@@ -10,6 +10,10 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
  
  
 /**
@@ -23,23 +27,48 @@ public class BarChartApp extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
  
+    String[] temparr;
+
+
     public Parent createContent() {
         String[] years = {"2007", "2008", "2009"};
+        String delimiter = ",";
+      
+        List<String[]> records = new ArrayList<>();
+
+        try{
+          File file = new File("/Users/noah/github-classroom/SACHSTech/cpt-noahlin34/src/charts/data.csv");
+  
+          FileReader fileReader = new FileReader(file);
+  
+          BufferedReader reader = new BufferedReader(fileReader);
+  
+          String line = "";
+  
+          while((line = reader.readLine()) != null) {
+            temparr = line.split(delimiter);
+            records.add(line.split(","));
+          }
+
+          
+  
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
+        String[][] array = new String[records.size()][3];
+        records.toArray(array);
+
         xAxis = new CategoryAxis();
-        xAxis.setCategories(FXCollections.<String>observableArrayList(years));
-        yAxis = new NumberAxis("Units Sold", 0.0d, 3000.0d, 1000.0d);
-        ObservableList<BarChart.Series> barChartData =
-            FXCollections.observableArrayList(
-              new BarChart.Series("Apples", FXCollections.observableArrayList(
-                new BarChart.Data(years[0], 567d),
-                new BarChart.Data(years[1], 1292d),
-                new BarChart.Data(years[2], 1292d))),
-              new BarChart.Series("Lemons", FXCollections.observableArrayList(
-                new BarChart.Data(years[0], 956),
+        xAxis.setCategories(FXCollections.<String>observableArrayList(temparr[1]));
+        yAxis = new NumberAxis();
+        ObservableList<BarChart.Series> barChartData = FXCollections.observableArrayList(
+              new BarChart.Series("Australia", FXCollections.observableArrayList(
+                new BarChart.Data(1997,Double.parseDouble(array[1][2])),
                 new BarChart.Data(years[1], 1665),
                 new BarChart.Data(years[2], 2559))),
-              new BarChart.Series("Oranges", FXCollections.observableArrayList(
-                new BarChart.Data(years[0], 1154),
+              new BarChart.Series("Canada", FXCollections.observableArrayList(
+                new BarChart.Data(years[0], Double.parseDouble(array[17][2])),
                 new BarChart.Data(years[1], 1927),
                 new BarChart.Data(years[2], 2774)))
             );
@@ -58,4 +87,10 @@ public class BarChartApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+    
+
+    
+
 }
